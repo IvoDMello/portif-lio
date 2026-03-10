@@ -166,3 +166,35 @@ color: #000000;
 }
 
 
+#classes dark-mode
+body.dark-mode  .retangulo-maior .retangulo-menor{
+    background-color: #000000;
+}
+body.dark-mode  .retangulo-maior {
+    background-color: #7a7979;
+}
+body.dark-mode  .retangulo-menor{
+    background-color: #1a1a1a;
+    color: #dad8d8;
+    border: 1px solid #ffffff;
+}
+
+body.dark-mode .nome, body.dark-mode .menu a, body.dark-mode .sobre {
+    color: #dad8d8;
+}
+
+body.dark-mode .titulo {
+    color: #dad8d8;
+}
+
+body.dark-mode .theme-option input:checked + .checkmark::after {
+    background: #fff;
+}
+body.dark-mode .imagem-centro {
+    /* Inverte as cores (preto vira branco) */
+    filter: invert(1); 
+    
+    /* Opcional: Se a imagem ficar muito "brilhante",
+       você pode diminuir um pouco a opacidade */
+    /* opacity: 0.8; */
+}
