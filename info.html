@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ivo Barbosa - Info</title>
     <link rel="stylesheet" href="/style/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -24,57 +24,118 @@
             </label>
         </div>
 
-    <div class="retangulo-menor_info">
-    <div class="info-header">
-        <a href="index.html" class="btn-back">< Back</a>
-    </div>
+        <div class="retangulo-menor_info">
 
-    <img src="/assets/spray-fundo.png" class="imagem-centro" alt="imagem de fundo">
+            <img src="/assets/spray-fundo.png" class="imagem-centro" alt="imagem de fundo">
 
-    <div class="info-container-linha1">
-    <h1 class="info-title">ABOUT ME</h1>
-    <!-- Conteúdo do card N1 -->
-    <div class="info-card">
-        
-        <p class="card-num">05</p>
-        
-        <div class="card-info-group">
-            <p class="card-desc">Years of ERP expertise</p> 
-            <!--adicionar imagem corretamente após MVP concluido
-            <img src="/assets/grafico linha_barras aba info 1.png" alt="linha decorativa" class="grafico-linha"> 
-            -->
+            <div class="info-content">
+
+                <a href="index.html" class="btn-back">&lt; Back</a>
+                <h1 class="info-title">ABOUT ME</h1>
+
+                <div class="info-grid">
+
+                    <!-- Card 1: ERP Experience -->
+                    <div class="info-card card-erp">
+                        <p class="card-num">05</p>
+                        <div class="card-info-group">
+                            <p class="card-desc">Years of ERP<br>expertize</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Stack Timeline -->
+                    <div class="info-card card-stack">
+                        <p class="stack-timeline">STACK TIMELINE</p>
+                        <div class="stack-row">
+                            <span class="stack-label">SQL</span>
+                            <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+                            <span class="stack-years">5y</span>
+                        </div>
+                        <div class="stack-row">
+                            <span class="stack-label">PYTHON</span>
+                            <div class="bar"><div class="fill" style="width: 35%;"></div></div>
+                            <span class="stack-years">2y</span>
+                        </div>
+                        <div class="stack-row">
+                            <span class="stack-label">EXCEL</span>
+                            <div class="bar"><div class="fill" style="width: 90%;"></div></div>
+                            <span class="stack-years">6y</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Personal Info + Certifications -->
+                    <div class="info-card card-personal">
+                        <div class="personal-section">
+                            <p class="personal-label"><strong>Personal Info:</strong></p>
+                            <p class="sql-query">SELECT * FROM NAME;</p>
+                            <button class="btn-expand" onclick="togglePersonal()">Click To Expand &#9660;</button>
+                            <div class="personal-details" id="personal-details" style="display:none;">
+                                <p>Name: Ivo Barbosa</p>
+                                <p>Location: Rio de Janeiro, BR</p>
+                                <p>Education: Associate Degree in Software and Development</p>
+                            </div>
+                        </div>
+                        <div class="cert-section">
+                            <p class="personal-label"><strong>Certifications &amp; Courses</strong></p>
+                            <p class="sql-query">SELECT * FROM CERTIFICATES;</p>
+                            <button class="btn-expand" onclick="toggleCertificates()">Click To Expand &#9660;</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Days studying -->
+                    <div class="info-card card-days">
+                        <p class="days-label">Days Studing<br>Programming</p>
+                        <div class="flip-counter" id="days-counter">
+                            <span class="flip-digit">1</span>
+                            <span class="flip-digit">0</span>
+                            <span class="flip-digit">3</span>
+                            <span class="flip-digit">1</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: More about me -->
+                    <div class="info-card card-photo">
+                        <img src="/assets/imagem-ivo-redonda.jpg" alt="Ivo Barbosa" class="profile-photo">
+                        <a href="#" class="more-about-link">More about me &#8594;</a>
+                    </div>
+
+                    <!-- Card 6: Strengths -->
+                    <div class="info-card card-strengths">
+                        <p class="strengths-title">STRENGTHS</p>
+                        <div class="strengths-tags">
+                            <span class="tag">COMMUNICATION</span>
+                            <span class="tag">PROBLEM SOLVING</span>
+                            <span class="tag">TEAMWORK</span>
+                            <span class="tag">ADAPTABILITY</span>
+                            <span class="tag">ANALYTICAL THINKING</span>
+                            <span class="tag">LEADERSHIP</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="info-footer">
+                <p>BUILD_VERSION: 1.0.4 // DESIGNED AND CODED BY IVO BARBOSA // &copy; 2026</p>
+            </footer>
+
         </div>
     </div>
-    <!-- Conteúdo do card N2 -->
-    <div class="info-card">
-    <p class="stack-timeline">STACK TIMELINE</p>
 
-    <div class="stack-item">
-        <span class="stack-label">SQL</span>
-
-        <div class="bar">
-            <div class="fill" style="width: 80%;"></div>
+    <div id="cert-overlay" class="contact-overlay">
+        <div class="contact-modal">
+            <button class="btn-fechar" onclick="toggleCertificates()">FECHAR [X]</button>
+            <div class="contact-content">
+                <h2 class="contact-title">CERTIFICATIONS</h2>
+                <div class="links-lista">
+                    <div class="divisor-horizontal"><a href="#">Certificação 1</a></div>
+                    <div class="divisor-horizontal"><a href="#">Certificação 2</a></div>
+                    <div class="divisor-horizontal"><a href="#">Certificação 3</a></div>
+                </div>
+            </div>
         </div>
-
-        <span class="stack-years">5y</span>
-
-        <span class="stack-label">PYTHON</span>
-
-        <div class="bar">
-            <div class="fill" style="width: 35%;"></div>
-        </div>
-
-        <span class="stack-years">2y</span>
     </div>
-</div>
-
-</div>
-
-    <footer class="info-footer">
-        <p>BUILD_VERSION: 1.0.4 // DESIGNED AND CODED BY IVO BARBOSA // © 2026</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-

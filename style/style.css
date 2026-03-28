@@ -149,12 +149,14 @@ color: #000000;
 .sobre {
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 20px;
+    font-size: clamp(13px, 1.4vw, 15px);
     line-height: 1.5;
     letter-spacing: 0.1em;
     color: #333;
-    max-width: 600px;
-    align-self: flex-end; /* Alinha à esquerda, ou use flex-end para a direita */
+    max-width: min(600px, 100%);
+    align-self: flex-end;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 
@@ -314,162 +316,431 @@ body.dark-mode .theme-selector .label-text {
     cursor: pointer;
 
 }
-/* página Info*/
+/* === INFO PAGE === */
+
+.retangulo-menor_info {
+    background-color: #D2D2D2;
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
 .btn-back {
     text-decoration: none;
     color: #000;
     font-family: 'Inter';
     font-weight: 600;
-    font-size: 30px;
-}
-/* Garante que o retângulo menor seja a base de tudo */
-.retangulo-menor_info {
-    background-color: #D2D2D2;
-    border: 1px solid #000000;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    /* Mude de space-between para flex-start */
-    justify-content: flex-start; 
-    padding: 60px;
-    position: relative;
-    overflow: hidden; /* Evita que a imagem ultrapasse os limites do retângulo */
-}
-
-/* A imagem continua centralizada e ao fundo */
-.imagem-centro {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1; /* Fica atrás do texto */
-    opacity: 0.6; /* Ajuste se quiser mais sutil */
-    pointer-events: none; /* Evita que a imagem atrapalhe cliques */
-}
-
-/* Container de conteúdo que "flutua" sobre a imagem */
-.info-container-linha1 {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    display: block;
-    width: 100%;
-    justify-content: flex-start; 
-    height: 100%;
-    vertical-align: top;
+    font-size: 22px;
+    margin-bottom: 4px;
+    display: inline-block;
 }
 
 .info-title {
-    margin-top: 10vh; /* Ajuste aqui para subir/descer o título */
     font-family: 'Inter';
     font-weight: 700;
-    font-size: 30px;
+    font-size: 22px;
     text-decoration: underline;
     letter-spacing: 0.1em;
     color: #000;
+    margin-bottom: 12px;
+}
+
+/* Grid principal */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1.2fr auto;
+    gap: 10px;
+    grid-template-areas:
+        "erp stack stack"
+        "personal days photo"
+        "strengths strengths strengths";
+    flex: 1;
+    min-height: 0;
 }
 
 .info-card {
-    /*primeiro retangulo para o numero e o grafico*/
-    box-sizing: border-box;
-    width: 380px;  
-    height: 120px; 
     background: #D9D9D9;
-    border: 2px solid #000000;
-    border-radius: 13px;
-    padding: 10px 20px;
-    margin-top: 40px; 
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 14px 18px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
+
+/* Atribuição de áreas */
+.card-erp {
+    grid-area: erp;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.card-stack {
+    grid-area: stack;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-personal {
+    grid-area: personal;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-days {
+    grid-area: days;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+.card-photo {
+    grid-area: photo;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}
+.card-strengths {
+    grid-area: strengths;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 12px 20px;
+}
+
+/* Card ERP */
 .card-num {
     font-family: 'Inter';
     font-weight: 700;
-    font-size: 40px;
-    letter-spacing: 0.05em;
-    color: #000000;
+    font-style: italic;
+    font-size: clamp(36px, 5vw, 74px);
+    color: #000;
+    line-height: 1;
 }
-
-/* Container do lado direito */
 .card-info-group {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: center;
-    /* Controla a proximidade total entre imagem e texto */
-    gap: 2px; 
 }
-
-.grafico-linha {
-    width: auto;      /* Mantém a proporção */
-    max-height: 60px; /* Garante que a imagem não "vaze" do retângulo de 108px */
-}
-
-.card-desc { 
-    font-size: 28px; 
-    text-align: right; /* Alinha o texto à direita para casar com o grupo */
-}
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-.dash-card {
-    width: 100%;
-}
-/* Estilos para o segundo card (Stack Timeline) */
-.stack-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
-}
-.stack-timeline {
+.card-desc {
+    font-family: 'Inter';
     font-weight: 700;
-    font-size: 14px;
-    margin: 0;          /* remove espaçamento padrão */
-    margin-bottom: 6px; /* controla distância da barra */
+    font-size: clamp(24px, 1.6vw, 32px);
+    text-align: right;
+    color: #000;
+}
+
+/* Card Stack */
+.stack-timeline {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+.stack-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 30px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
 }
 .stack-label {
-    min-width: 50px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 12px;
 }
-
 .stack-years {
-    min-width: 30px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 12px;
     text-align: right;
 }
-
 .bar {
-    height: 10px;
-    background: #ddd;
+    height: 8px;
+    background: #bbb;
     border: 1px solid #000;
-    position: relative;
 }
-
 .fill {
     height: 100%;
     background: #000;
 }
-/* Estilos para o rodapé */
-.info-footer {
+
+/* Card Personal */
+.personal-section {
+    flex: 1;
+}
+.personal-label {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+.sql-query {
+    font-family: 'Inter';
+    font-size: 13px;
+    color: #444;
+    padding-left: 8px;
+    margin-bottom: 6px;
+}
+.btn-expand {
+    background: linear-gradient(145deg, #d6d6d6, #a8a8a8);: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-family: 'Inter';
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 6px;
+}
+.btn-expand:hover {
+    background: #000;
+    color: #fff;
+}
+.personal-details {
+    font-family: 'Inter';
+    font-size: 12px;
+    color: #444;
+    padding-left: 8px;
+    line-height: 1.6;
+}
+.cert-section {
+    border-top: 1px solid #000;
+    padding-top: 8px;
+}
+
+/* Card Days */
+.days-label {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 24px;
     text-align: center;
-    padding: 0px 0;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+}
+.flip-counter {
+    display: flex;
+    gap: 6px;
+}
+.flip-digit {
+    background: #1a1a1a;
+    color: #ff8800;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: clamp(35px, 3.5vw, 52px);
+    width: clamp(36px, 4.5vw, 60px);
+    height: clamp(44px, 5.5vw, 72px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    position: relative;
+}
+.flip-digit::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #3a3a3a;
+    top: 50%;
+}
+
+/* Card Photo */
+.profile-photo {
+    width: clamp(64px, 8vw, 96px);
+    height: clamp(64px, 8vw, 96px);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #555;
+}
+.more-about-link {
+    color: #fff;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.more-about-link:hover {
+    opacity: 0.6;
+}
+
+/* Card Strengths */
+.strengths-title {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+.strengths-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.tag {
+    background: linear-gradient(145deg, #d6d6d6, #a8a8a8);
+    border: 1.5px solid #000;
+    border-radius: 999px;
+    padding: 5px 18px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
+/* Footer */
+.info-footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 10px 0 0;
     font-family: 'Inter';
     font-weight: 400;
-    font-size: 14px;
-    color: #333;
+    font-size: 11px;
+    color: #555;
 }
-/* Modo Escuro info*/
-body.dark-mode .info-title, 
+
+/* === DARK MODE INFO === */
+body.dark-mode .retangulo-menor_info {
+    background-color: #1f1f1f;
+    border-color: #fff;
+}
 body.dark-mode .info-card {
+    background: #2a2a2a;
+    border-color: #fff;
+}
+body.dark-mode .btn-back,
+body.dark-mode .info-title,
+body.dark-mode .card-num,
+body.dark-mode .card-desc,
+body.dark-mode .stack-timeline,
+body.dark-mode .stack-label,
+body.dark-mode .stack-years,
+body.dark-mode .personal-label,
+body.dark-mode .days-label,
+body.dark-mode .strengths-title {
     color: #dad8d8;
-    border-color: #ffffff;
+}
+body.dark-mode .sql-query,
+body.dark-mode .personal-details {
+    color: #aaa;
+}
+body.dark-mode .bar {
+    background: #444;
+    border-color: #fff;
+}
+body.dark-mode .fill {
+    background: #dad8d8;
+}
+body.dark-mode .btn-expand {
+    
+    border-color: #dad8d8;
+    color: #dad8d8;
+}
+body.dark-mode .btn-expand:hover {
+    background: #dad8d8;
+    color: #000;
+}
+body.dark-mode .cert-section {
+    border-top-color: #555;
+}
+body.dark-mode .tag {
+    background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+    border-color: #dad8d8;
+    color: #dad8d8;
+}
+body.dark-mode .btn-expand {
+    background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+    border-color: #dad8d8;
+    color: #dad8d8;
+}
+body.dark-mode .checkmark {
+    border-color: #dad8d8;
+}
+body.dark-mode .divisor-vertical {
+    background-color: #dad8d8;
+}
+body.dark-mode .info-footer {
+    color: #888;
 }
 body.dark-mode .imagem-centro {
     filter: invert(1);
+}
+
+/* === RESPONSIVIDADE INFO PAGE === */
+@media (max-width: 1024px) {
+    .retangulo-menor_info {
+        padding: 24px 30px 12px;
+    }
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas:
+            "erp stack"
+            "personal days"
+            "photo photo"
+            "strengths strengths";
+    }
+    .card-strengths {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .retangulo-menor_info {
+        padding: 20px 20px 10px;
+        overflow-y: auto;
+    }
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "erp stack"
+            "personal personal"
+            "days photo"
+            "strengths strengths";
+        gap: 8px;
+    }
+    .card-num {
+        font-size: clamp(28px, 6vw, 52px);
+    }
+    .card-desc {
+        font-size: clamp(14px, 2.5vw, 22px);
+    }
+    .days-label {
+        font-size: 16px;
+    }
+    .flip-digit {
+        font-size: clamp(24px, 4vw, 40px);
+        width: clamp(28px, 5vw, 48px);
+        height: clamp(36px, 6vw, 58px);
+    }
+    .strengths-tags {
+        gap: 8px;
+    }
 }
