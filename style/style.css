@@ -419,6 +419,11 @@ body.dark-mode .theme-selector .label-text {
     justify-content: center;
     gap: 12px;
     cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card-photo:hover {
+    border-color: #ff8800;
+    box-shadow: 0 0 12px #ff8800;
 }
 .card-strengths {
     grid-area: strengths;
@@ -527,6 +532,7 @@ body.dark-mode .theme-selector .label-text {
     line-height: 1.6;
 }
 .cert-section {
+    flex: 1;
     border-top: 1px solid #000;
     padding-top: 8px;
 }
@@ -574,6 +580,11 @@ body.dark-mode .theme-selector .label-text {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #555;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.profile-photo:hover {
+    border-color: #ff8800;
+    box-shadow: 0 0 8px #ff8800;
 }
 .more-about-link {
     color: #fff;

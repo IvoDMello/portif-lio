@@ -1,12 +1,15 @@
 // Tema
-const inputs = document.querySelectorAll('input[name="theme"]');
-inputs.forEach(input => {
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+document.querySelectorAll('input[name="theme"]').forEach(input => {
+    if (input.value === savedTheme) input.checked = true;
     input.addEventListener('change', () => {
         if (input.value === 'dark') {
             document.body.classList.add('dark-mode');
         } else {
             document.body.classList.remove('dark-mode');
         }
+        localStorage.setItem('theme', input.value);
     });
 });
 
@@ -48,7 +51,7 @@ if (daysCounter) {
     const daysStr = String(days).padStart(3, '0');
     daysCounter.innerHTML = daysStr.split('').map(d => `<span class="flip-digit">${d}</span>`).join('');
 }
-
+// Aba projects
 // Carousel de projetos
 let carouselIndex = 0;
 const CAROUSEL_GAP = 10;
