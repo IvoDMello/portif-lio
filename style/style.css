@@ -798,6 +798,9 @@ body.dark-mode .imagem-centro {
     padding: 12px;
     box-sizing: border-box;
     min-height: 0;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .project-card-name {
@@ -818,6 +821,47 @@ body.dark-mode .imagem-centro {
     justify-content: center;
     margin-bottom: 10px;
     background: #c4c4c4;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.68);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 2;
+}
+
+.project-card-photo:hover .project-card-overlay {
+    opacity: 1;
+}
+
+.overlay-btn {
+    padding: 7px 22px;
+    border: 2px solid #ff8800;
+    color: #ff8800;
+    background: transparent;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: clamp(11px, 1vw, 13px);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.overlay-btn:hover {
+    background: #ff8800;
+    color: #fff;
 }
 
 .project-card-img {
